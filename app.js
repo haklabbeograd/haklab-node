@@ -7,6 +7,8 @@ var app = express();
 
 app.use(cors());
 
+app.set('port', (process.env.PORT || 5000));
+
 app.get('/',function(req,res) {
   res.send("Hello");
 });
@@ -52,7 +54,7 @@ app.get('/test',function(req,res){
 // HTTP - get (citanje), post (kreiranje), put (modifikacija), delete (brisanje)
 
 
-app.listen(5000,function(){
+app.listen(app.get('port'),function(){
   console.log("server has stared on port 5000");
 
 })
