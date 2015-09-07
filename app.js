@@ -38,6 +38,7 @@ var radionice = [
   {
     id: 2,
     ime: "elektronika",
+    img:"http://www.alsglobal.com/~/media/Images/Divisions/Life%20Sciences/Electronics%20Testing/Electronics%204.jpg",
     mesto: "hklbgd"
   }
 ];
