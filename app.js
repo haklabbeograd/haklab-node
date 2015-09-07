@@ -2,7 +2,7 @@ var express = require('express');
 // var _ = require('underscore');
 var cors = require('cors');
 
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 
 var app = express();
 
