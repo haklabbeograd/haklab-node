@@ -81,3 +81,56 @@ app.post('/test', function(req, res) {
 app.listen(app.get('port'), function() {
   console.log("server has stared on port 5000");
 });
+
+var currEventId = 3;
+var events = [
+  {
+    id: 0,
+    ime: "event0",
+    mesto: "hklbgd"
+  },
+  {
+    id: 1,
+    ime: "event1",
+    mesto: "hklbgd"
+  },
+  {
+    id: 2,
+    ime: "event2",
+    img:"https://upload.wikimedia.org/wikipedia/sh/d/d9/Radno_Predsednistvo_Pete_konferencije_KPJ_1952_god.jpg",
+    mesto: "hklbgd"
+  }
+];
+
+
+app.get('/events', function(req, res) {
+  res.json(events);
+});
+
+app.get('/events/:id', function(req, res) {
+  var id = Number(req.params.id), event;
+  //TODO dodaj underscore
+  console.log(id);
+  for (var e in events) {
+    if (events[e].id === id) {
+      event = events[e];
+    }
+  }
+  res.json(events);
+});
+
+//TODO zameni sa post
+app.post('/test', function(req, res) {
+  req.on('data', function(ddd) {
+    console.log(ddd);
+  });
+  var radionica = {
+    id: currEventId,
+    ime: req.query.ime,
+    mesto: "haklab"
+  };
+  console.log(event);
+  eventId++;
+  radionice.push(event);
+});
+
