@@ -75,13 +75,6 @@ app.post('/test', function(req, res) {
   radionice.push(radionica);
 });
 
-// HTTP - get (citanje), post (kreiranje), put (modifikacija), delete (brisanje)
-
-
-app.listen(app.get('port'), function() {
-  console.log("server has stared on port 5000");
-});
-
 // EVENTS
 var currEventId = 3;
 var events = [
@@ -125,13 +118,19 @@ app.post('/test', function(req, res) {
   req.on('data', function(ddd) {
     console.log(ddd);
   });
-  var radionica = {
+  var event = {
     id: currEventId,
     ime: req.query.ime,
     mesto: "haklab"
   };
   console.log(event);
   eventId++;
-  radionice.push(event);
+  events.push(event);
 });
 
+// HTTP - get (citanje), post (kreiranje), put (modifikacija), delete (brisanje)
+
+
+app.listen(app.get('port'), function() {
+  console.log("server has stared on port 5000");
+});
