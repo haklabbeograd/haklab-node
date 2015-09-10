@@ -82,6 +82,7 @@ app.listen(app.get('port'), function() {
   console.log("server has stared on port 5000");
 });
 
+// EVENTS
 var currEventId = 3;
 var events = [
   {
