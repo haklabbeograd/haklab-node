@@ -9,7 +9,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "body-parser": "^1.14.0",
     "cors": "^2.7.1",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "mail": "^0.2.3",
+    "nodemailer": "^1.4.0"
   }
 }

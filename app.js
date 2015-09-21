@@ -2,18 +2,38 @@ var express = require('express');
 // var _ = require('underscore');
 var cors = require('cors');
 
-// var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 
-var app = express();
+var nodemailer = require('nodemailer');
 
-// app.use(bodyParser.json({
-//   limit: 10000000
-// }));
-//
-// app.use(bodyParser.urlencoded({
-//   extended: true,
-//   limit: 10000000
-// }));
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'haklabnode@gmail.com',
+        pass: 'Haklab123'
+    }
+});
+
+var mailOptions = {
+    from: 'Nodara ✔ <haklabnode@gmail.com>', // sender address
+    to: 'razmenavestina@googlegroups.com', // list of receivers
+    subject: '[javascripting] JS radionica', // Subject line
+    text: 'Hvala sto ste bili na radionici...NOT ✔', // plaintext body
+    html: '<b>Hvala sto ste bili na radionici...NOT ✔</b>' // html body
+};
+
+
+
+var app =  express();
+
+app.use(bodyParser.json({
+  limit: 10000000
+}));
+
+app.use(bodyParser.urlencoded({
+  extended: true,
+  limit: 10000000
+}));
 
 app.use(cors());
 
@@ -114,18 +134,20 @@ app.get('/events/:id', function(req, res) {
 });
 
 //TODO zameni sa post
-app.post('/test', function(req, res) {
-  req.on('data', function(ddd) {
-    console.log(ddd);
-  });
-  var event = {
-    id: currEventId,
-    ime: req.query.ime,
-    mesto: "haklab"
-  };
-  console.log(event);
-  eventId++;
-  events.push(event);
+app.post('/send', function(req, res) {
+  var data = req.body;
+  data.sent = true;
+
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        console.log(error);
+    }else{
+        console.log('Message sent: ' + info.response);
+    }
+    res.json(data);
+});
+
 });
 
 // HTTP - get (citanje), post (kreiranje), put (modifikacija), delete (brisanje)
